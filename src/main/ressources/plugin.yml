@@ -1,7 +1,8 @@
-name: ChopTree5
+name: ChopTree
 main: net.gkid117.choptree.ChopTree
 version: 5.0.0
-author: gkid117
+author: gkid117 and EpiCanard
+api-version: 1.13
 softdepend: [Res, Towny, MyChunk, WorldGuard]
 commands:
   choptree:
