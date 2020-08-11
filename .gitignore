@@ -13,3 +13,6 @@ buildNumber.properties
 
 .vscode
 .settings
+.idea
+.classpath
+*.iml

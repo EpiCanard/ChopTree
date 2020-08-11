@@ -200,7 +200,7 @@ public class ChopTree
     config.set("ActiveByDefault", Boolean.valueOf(defaultActive));
     useAnything = config.getBoolean("UseAnything", false);
     config.set("UseAnything", Boolean.valueOf(useAnything));
-    allowedTools = config.getString("AllowedTools").split(",");
+    allowedTools = config.getStringList("AllowedTools").toArray(new String[0]);
     config.set("AllowedTools", arrayToString(allowedTools, ","));
     moreDamageToTools = config.getBoolean("MoreDamageToTools", false);
     config.set("MoreDamageToTools", Boolean.valueOf(moreDamageToTools));
@@ -222,7 +222,7 @@ public class ChopTree
   }
 
   private List<String> filterConfigParams(String configVar, String contain) {
-    final List<String> input = Arrays.asList(config.getString(configVar).split(","));
+    final List<String> input = config.getStringList(configVar);
     final List<String> notAllowed = new ArrayList<>();
     final List<String> output = input.stream().filter(block -> {
       final Boolean ret = block.contains(contain); 

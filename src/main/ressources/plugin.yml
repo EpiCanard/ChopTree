@@ -1,4 +1,5 @@
 name: ChopTree
+description: Plugin that cut tree in one hit with axe
 main: net.gkid117.choptree.ChopTree
 version: 5.0.0
 author: gkid117 and EpiCanard
