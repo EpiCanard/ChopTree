@@ -215,17 +215,17 @@ public class ChopTree
     leafRadius = config.getInt("LeafRadius", 3);
     config.set("LeafRadius", Integer.valueOf(leafRadius));
 
-    allowedWoodBlocks = filterConfigParams("AllowedWoodBlocks", "LOG");
-    leavesForDecay = filterConfigParams("LeavesForDecay", "LEAVES");
+    allowedWoodBlocks = filterConfigParams("AllowedWoodBlocks", Arrays.asList("LOG", "STEM"));
+    leavesForDecay = filterConfigParams("LeavesForDecay", Arrays.asList("LEAVES", "WART_BLOCK"));
 
     saveConfig();
   }
 
-  private List<String> filterConfigParams(String configVar, String contain) {
+  private List<String> filterConfigParams(String configVar, List<String> contain) {
     final List<String> input = config.getStringList(configVar);
     final List<String> notAllowed = new ArrayList<>();
     final List<String> output = input.stream().filter(block -> {
-      final Boolean ret = block.contains(contain); 
+      final Boolean ret = contain.stream().anyMatch(word -> block.contains(word)); 
       if (!ret)
         notAllowed.add(block);
       return ret;

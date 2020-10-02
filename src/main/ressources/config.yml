@@ -38,6 +38,8 @@ AllowedWoodBlocks:
   - JUNGLE_LOG
   - OAK_LOG
   - SPRUCE_LOG
+  - CRIMSON_STEM
+  - WARPED_STEM
 LeavesForDecay:
   - ACACIA_LEAVES
   - BIRCH_LEAVES
@@ -45,3 +47,5 @@ LeavesForDecay:
   - JUNGLE_LEAVES
   - OAK_LEAVES
   - SPRUCE_LEAVES
+  - NETHER_WART_BLOCK
+  - WARPED_WART_BLOCK
