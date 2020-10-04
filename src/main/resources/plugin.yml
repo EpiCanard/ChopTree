@@ -1,7 +1,7 @@
 name: ChopTree
 description: Spigot plugin to remove a tree in one shot
 main: net.gkid117.choptree.ChopTree
-version: 5.1.0
+version: ${project.version}
 author: gkid117 and EpiCanard
 api-version: 1.13
 softdepend: [Res, Towny, MyChunk, WorldGuard]
