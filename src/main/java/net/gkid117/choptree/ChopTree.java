@@ -109,43 +109,43 @@ public class ChopTree
         }
         if (args[1].equalsIgnoreCase("ActiveByDefault")){
           defaultActive = !defaultActive;
-          config.set("ActiveByDefault", Boolean.valueOf(defaultActive));
+          config.set("ActiveByDefault", defaultActive);
           sender.sendMessage(ChatColor.GOLD + "ActiveByDefault set to : " + ChatColor.GRAY + defaultActive);
         }
         else if (args[1].equalsIgnoreCase("UseAnything"))
         {
           useAnything = !useAnything;
-          config.set("useAnything", Boolean.valueOf(useAnything));
+          config.set("useAnything", useAnything);
           sender.sendMessage(ChatColor.GOLD + "UseAnything set to : " + ChatColor.GRAY + useAnything);
         }
         else if (args[1].equalsIgnoreCase("MoreDamageToTools"))
         {
           moreDamageToTools = !moreDamageToTools;
-          config.set("MoreDamageToTools", Boolean.valueOf(moreDamageToTools));
+          config.set("MoreDamageToTools", moreDamageToTools);
           sender.sendMessage(ChatColor.GOLD + "MoreDamageToTools set to : " + ChatColor.GRAY + moreDamageToTools);
         }
         else if (args[1].equalsIgnoreCase("InterruptIfToolBreaks"))
         {
           interruptIfToolBreaks = !interruptIfToolBreaks;
-          config.set("InterruptIfToolBreaks", Boolean.valueOf(interruptIfToolBreaks));
+          config.set("InterruptIfToolBreaks", interruptIfToolBreaks);
           sender.sendMessage(ChatColor.GOLD + "InterruptIfToolBreaks set to : " + ChatColor.GRAY + interruptIfToolBreaks);
         }
         else if (args[1].equalsIgnoreCase("LogsMoveDown"))
         {
           logsMoveDown = !logsMoveDown;
-          config.set("LogsMoveDown", Boolean.valueOf(logsMoveDown));
+          config.set("LogsMoveDown", logsMoveDown);
           sender.sendMessage(ChatColor.GOLD + "LogsMoveDown set to : " + ChatColor.GRAY + logsMoveDown);
         }
         else if (args[1].equalsIgnoreCase("OnlyTrees"))
         {
           onlyTrees = !onlyTrees;
-          config.set("OnlyTrees", Boolean.valueOf(onlyTrees));
+          config.set("OnlyTrees", onlyTrees);
           sender.sendMessage(ChatColor.GOLD + "OnlyTrees set to : " + ChatColor.GRAY + onlyTrees);
         }
         else if (args[1].equalsIgnoreCase("PopLeaves"))
         {
           popLeaves = !popLeaves;
-          config.set("PopLeaves", Boolean.valueOf(popLeaves));
+          config.set("PopLeaves", popLeaves);
           sender.sendMessage(ChatColor.GOLD + "PopLeaves set to : " + ChatColor.GRAY + popLeaves);
         }
         else
@@ -197,23 +197,23 @@ public class ChopTree
     reloadConfig();
     config = getConfig();
     defaultActive = config.getBoolean("ActiveByDefault", true);
-    config.set("ActiveByDefault", Boolean.valueOf(defaultActive));
+    config.set("ActiveByDefault", defaultActive);
     useAnything = config.getBoolean("UseAnything", false);
-    config.set("UseAnything", Boolean.valueOf(useAnything));
+    config.set("UseAnything", useAnything);
     allowedTools = config.getStringList("AllowedTools").toArray(new String[0]);
     config.set("AllowedTools", arrayToString(allowedTools, ","));
     moreDamageToTools = config.getBoolean("MoreDamageToTools", false);
-    config.set("MoreDamageToTools", Boolean.valueOf(moreDamageToTools));
+    config.set("MoreDamageToTools", moreDamageToTools);
     interruptIfToolBreaks = config.getBoolean("InterruptIfToolBreaks", false);
-    config.set("InterruptIfToolBreaks", Boolean.valueOf(interruptIfToolBreaks));
+    config.set("InterruptIfToolBreaks", interruptIfToolBreaks);
     logsMoveDown = config.getBoolean("LogsMoveDown", false);
-    config.set("LogsMoveDown", Boolean.valueOf(logsMoveDown));
+    config.set("LogsMoveDown", logsMoveDown);
     onlyTrees = config.getBoolean("OnlyTrees", true);
-    config.set("OnlyTrees", Boolean.valueOf(onlyTrees));
+    config.set("OnlyTrees", onlyTrees);
     popLeaves = config.getBoolean("PopLeaves", false);
-    config.set("PopLeaves", Boolean.valueOf(popLeaves));
+    config.set("PopLeaves", popLeaves);
     leafRadius = config.getInt("LeafRadius", 3);
-    config.set("LeafRadius", Integer.valueOf(leafRadius));
+    config.set("LeafRadius", leafRadius);
 
     allowedWoodBlocks = filterConfigParams("AllowedWoodBlocks", Arrays.asList("LOG", "STEM"));
     leavesForDecay = filterConfigParams("LeavesForDecay", Arrays.asList("LEAVES", "WART_BLOCK"));
@@ -225,7 +225,7 @@ public class ChopTree
     final List<String> input = config.getStringList(configVar);
     final List<String> notAllowed = new ArrayList<>();
     final List<String> output = input.stream().filter(block -> {
-      final Boolean ret = contain.stream().anyMatch(word -> block.contains(word)); 
+      final boolean ret = contain.stream().anyMatch(block::contains);
       if (!ret)
         notAllowed.add(block);
       return ret;
