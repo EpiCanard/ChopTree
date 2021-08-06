@@ -236,7 +236,7 @@ public class ChopTree
       getLogger().warning("[CONFIG] Config has been rewritten with only those blocks : " + configVar + " = " + StringUtils.join(output, ","));      
     }
 
-    config.set(configVar, StringUtils.join(output, ","));
+    config.set(configVar, output);
     
     return output;
   }
