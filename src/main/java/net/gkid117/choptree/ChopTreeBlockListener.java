@@ -4,10 +4,13 @@ import java.lang.reflect.Array;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
+
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -19,6 +22,7 @@ public class ChopTreeBlockListener implements Listener {
   public static Player pubplayer = null;
   public static ChopTree plugin;
   private int leafRadius;
+  private final Random random = new Random();
   
   public ChopTreeBlockListener(ChopTree instance) {
     plugin = instance;
@@ -364,23 +368,22 @@ public class ChopTreeBlockListener implements Listener {
     }
   }
   
-  public boolean breaksTool(Player player, ItemStack item)
-  {
-    if ((item != null) && 
-      (isTool(item.getType())))
-    {
+  public boolean breaksTool(Player player, ItemStack item) {
+    if (item != null && isTool(item.getType()) && shouldTakeDamage(item)) {
       short damage = item.getDurability();
-      if (isAxe(item.getType())) {
-        damage = (short)(damage + 1);
-      } else {
-        damage = (short)(damage + 2);
-      }
+      damage += (isAxe(item.getType())) ? 1 : 2;
       if (damage >= item.getType().getMaxDurability()) {
         return true;
       }
       item.setDurability(damage);
     }
     return false;
+  }
+
+  private Boolean shouldTakeDamage(ItemStack item) {
+    int level = item.getEnchantmentLevel(Enchantment.DURABILITY);
+    int rate = 100 / (level + 1);
+    return random.nextInt(100) < rate;
   }
   
   public boolean isTool(Material mat)
